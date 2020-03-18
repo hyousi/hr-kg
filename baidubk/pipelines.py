@@ -13,9 +13,12 @@ class BaidubkPipeline(object):
         self.item_set = set()
 
     def process_item(self, item, spider):
-        uuid = item["name"] + item["birth"]
-        if uuid in self.item_set:
-            raise DropItem(f"重复项{item}")
+        if spider.name == "htable":
+            uuid = item["name"] + item["birth"]
+            if uuid in self.item_set:
+                raise DropItem(f"重复项{item}")
+            else:
+                self.item_set.add(uuid)
+                return item
         else:
-            self.item_set.add(uuid)
             return item
