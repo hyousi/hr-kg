@@ -16,3 +16,12 @@ class BaidubkItem(scrapy.Item):
 
     def __str__(self):
         return f'{self["birth"]}-{self["name"]}'
+
+
+class RelationItem(scrapy.Item):
+    subj = scrapy.Field()
+    pred = scrapy.Field()
+    obj = scrapy.Field()
+
+    def __str__(self):
+        return f"{self['subj']}-{self['pred']}-{self['obj']}"
